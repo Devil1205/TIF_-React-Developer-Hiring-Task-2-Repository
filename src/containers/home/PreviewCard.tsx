@@ -1,5 +1,5 @@
 import { Box, Flex, Text, Grid } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect } from "react";
 import {
   IInterViewSettings,
   IJobDetails,
@@ -12,6 +12,7 @@ import {
   interviewModeOptions,
   urgencyOptions,
 } from "./constants";
+
 
 const DataCard: React.FC<{ title: string; children: React.ReactNode }> = ({
   title,
@@ -50,7 +51,9 @@ const PreviewCard: React.FC<{
   jobDetails?: IJobDetails;
   interviewSettings?: IInterViewSettings;
 }> = ({ requisitionDetails, jobDetails, interviewSettings }) => {
-  return (
+  
+
+    return (
     <Box p="1rem">
       <Box borderRadius="10px" bgColor="gray.100" height="fit-content">
         <Flex justifyContent="space-between">

@@ -9,8 +9,8 @@ import { IRequisitionDetails } from "../../interface/forms";
 import { genderOptions, urgencyOptions } from "./constants";
 
 const RequisitionDetailsForm: React.FC<{
-  handleTab: (n: PageNumbers) => void;
-}> = ({ handleTab }) => {
+  handleTab: (n: PageNumbers) => void; updateRequisition: (name: any, value: any) => void
+}> = ({ handleTab, updateRequisition }) => {
   const {
     handleChange,
     errors,
@@ -50,7 +50,7 @@ const RequisitionDetailsForm: React.FC<{
           label="Requisition Title"
           placeholder="Enter requisition title"
           name="requisitionTitle"
-          onChange={handleChange}
+          onChange={(e)=>{handleChange(e); updateRequisition(e.target.name,e.target.value)}}
           onBlur={handleBlur}
           value={values?.requisitionTitle}
           error={errors?.requisitionTitle}
@@ -60,7 +60,7 @@ const RequisitionDetailsForm: React.FC<{
           label="Number of openings"
           placeholder="Enter number of openings"
           name="noOfOpenings"
-          onChange={handleChange}
+          onChange={(e)=>{handleChange(e); updateRequisition(e.target.name,e.target.value)}}
           onBlur={handleBlur}
           value={values?.noOfOpenings}
           error={errors?.noOfOpenings}
@@ -71,7 +71,7 @@ const RequisitionDetailsForm: React.FC<{
           name="gender"
           placeholder="Select gender"
           options={genderOptions}
-          onChange={setFieldValue}
+          onChange={(name:any, value:any)=>{setFieldValue(name,value);updateRequisition(name,value)}}
           onBlur={setFieldTouched}
           error={errors.gender}
           touched={touched.gender}
@@ -82,7 +82,7 @@ const RequisitionDetailsForm: React.FC<{
           name="urgency"
           placeholder="Select urgency"
           options={urgencyOptions}
-          onChange={setFieldValue}
+          onChange={(name:any, value:any)=>{setFieldValue(name,value); updateRequisition(name,value)}}
           onBlur={setFieldTouched}
           error={errors.urgency}
           touched={touched.urgency}

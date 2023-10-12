@@ -7,8 +7,8 @@ import { PageNumbers } from "../../interface/home";
 import { IJobDetails } from "../../interface/forms";
 
 const JobDetailsForm: React.FC<{
-  handleTab: (n: PageNumbers) => void;
-}> = ({ handleTab }) => {
+  handleTab: (n: PageNumbers) => void; updateJobDetails: (name: any, value: any) => void
+}> = ({ handleTab, updateJobDetails }) => {
   const { handleChange, errors, touched, handleBlur, handleSubmit, values } =
     useFormik<IJobDetails>({
       initialValues: {
@@ -20,7 +20,6 @@ const JobDetailsForm: React.FC<{
         jobTitle: Yup.string().required("Job Title is required"),
         jobDetails: Yup.string().required("Job Details is required"),
         jobLocation: Yup.string().required("Job Location is required"),
-        jobPosition: Yup.string().required("Job position is required"),
       }),
       onSubmit: (values) => {
         console.log({ values });
@@ -35,7 +34,7 @@ const JobDetailsForm: React.FC<{
           label="Job Title"
           placeholder="Enter job title"
           name="jobTitle"
-          onChange={handleChange}
+          onChange={(e)=>{handleChange(e); updateJobDetails(e.target.name,e.target.value)}}
           onBlur={handleBlur}
           value={values?.jobTitle}
           error={errors?.jobTitle}
@@ -45,7 +44,7 @@ const JobDetailsForm: React.FC<{
           label="Job Details"
           placeholder="Enter job details"
           name="jobDetails"
-          onChange={handleChange}
+          onChange={(e)=>{handleChange(e); updateJobDetails(e.target.name,e.target.value)}}
           onBlur={handleBlur}
           value={values?.jobDetails}
           error={errors?.jobDetails}
@@ -55,7 +54,7 @@ const JobDetailsForm: React.FC<{
           label="Job Location"
           name="jobLocation"
           placeholder="Enter job location"
-          onChange={handleChange}
+          onChange={(e)=>{handleChange(e); updateJobDetails(e.target.name,e.target.value)}}
           onBlur={handleBlur}
           error={errors.jobLocation}
           touched={touched.jobLocation}
